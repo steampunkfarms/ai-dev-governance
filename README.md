@@ -368,7 +368,7 @@ Each facet of the model, presented in isolation with worked examples. Start with
 | Deep dive | What it covers | Status |
 | :---- | :---- | :---- |
 | [The Sanity Check](docs/sanity-check.md) | Validating a blind spec against live production before it runs | ✅ |
-| Bounded Deviation | The exact rule for when an Executor may stray from the spec | 🚧 Planned |
+| [Bounded Deviation](docs/bounded-deviation.md) | The exact rule for when an Executor may stray from the spec | ✅ |
 | The Two Roles | Choosing your Strategist and Executor; drawing the line between them | 🚧 Planned |
 | The Context Cascade | Building an `AGENT.md` hierarchy that resolves conflicts cleanly | 🚧 Planned |
 | Checkpoints & Handoffs | Templates and the session-resume protocol | 🚧 Planned |
