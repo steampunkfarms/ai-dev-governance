@@ -29,7 +29,7 @@ block accounts when I have to. I won't run a tribunal — if behavior
 crosses the line, the consequence happens and the thread moves on.
 
 For serious issues (off-platform harassment, threats, doxxing related to
-activity here), email **frederick.olaf@gmail.com**.
+activity here), email **backcountry@tronboll.us**.
 
 ## Scope
 
