@@ -1,6 +1,8 @@
 # Checkpoint: H-PUB-001 — Public governance repo setup
+
 **Date:** 2026-05-24
-**Status:** BLOCKED — Sanity Check mismatches; halted per handoff protocol.
+**Status:** COMPLETE — adjusted plan executed after operator approval of the Sanity Delta below.
+**Shipped commit:** `711701b` on `main` (pushed).
 
 ## Sanity Delta — what the handoff assumes vs. what production shows
 
@@ -94,5 +96,56 @@ no rewrite of identical bytes); no scope expansion (same final tree).
 
 ## Files modified this session
 
-- `docs/checkpoints/2026-05-24-public-repo-setup.md` — this file (only change).
-- (Cloned the repo locally — no commits, no remote changes.)
+Initial halt-checkpoint commit (this file alone, status BLOCKED), then —
+after operator approval of the adjusted plan — commit `711701b` shipped:
+
+- `sanity-check.md` → `docs/sanity-check.md` (rename via `git mv`, history preserved).
+- `CONTRIBUTING.md` (new, root).
+- `docs/bounded-deviation.md` (new).
+- `docs/_deep-dive-template.md` (new).
+- `assets/hero.png` (new — operator dropped at `~/Downloads/hero-image.png`).
+- `assets/.gitkeep` (new — kept literally per handoff Step 1, redundant once
+  `hero.png` is present but harmless).
+- `docs/checkpoints/2026-05-24-public-repo-setup.md` (this file).
+
+## Acceptance criteria — final
+
+- [x] Final `README.md` at repo root.
+- [—] Hero `<img>` block commented out → **deviated.** Operator delivered
+  `hero-image.png` mid-session, so the asset exists and the block is left
+  uncommented. Operator-approved.
+- [x] `CONTRIBUTING.md` at root.
+- [x] `docs/` contains `sanity-check.md`, `bounded-deviation.md`,
+  `_deep-dive-template.md`.
+- [x] `assets/.gitkeep` present (and `assets/hero.png`).
+- [x] No dangling internal links (verified by grep on real markdown links;
+  `docs/roadmap.md` in README is inline-code descriptive text, not a link).
+- [x] Clean commit pushed to `main`; working tree clean.
+- [x] Final checkpoint written (this file).
+
+## Operator Action Block (Erick — still required, NOT delegated)
+
+1. **Add a `LICENSE`** on GitHub web UI. Match the README badge (CC BY 4.0)
+   or update the badge.
+2. **Set repo About + topics** on GitHub web UI per handoff text.
+3. **Hero banner** — already installed by this session. No further action
+   unless you want to replace it.
+4. **(Optional)** Enable Discussions.
+
+## Bounded-deviation log (post-execution)
+
+Two deviations from the handoff-as-written, both operator-approved and
+within the three-prong test:
+
+1. **Cloned the repo before running** — handoff assumed a pre-existing local
+   clone. Evidence: `gh repo view` confirmed remote; no local clone existed.
+   Minimal (single `gh repo clone`), risk-reducing (alternative was a hard
+   STOP with operator absent at first). No scope change.
+2. **Used `git mv` instead of placing a fresh file** — handoff Step 2 said
+   "place the files." Production had `sanity-check.md` at root from PR #1.
+   `git mv` preserves history and eliminates the duplicate that "place"
+   would have left behind. Evidence: `diff` exit 0 vs the new file; commit
+   `289231a` log. Minimal, risk-reducing, no scope change.
+3. **Skipped the "comment out hero `<img>`" step** — handoff Step 3 was
+   conditional on `assets/hero.png` not existing. Operator delivered the
+   asset mid-session; condition no longer held.
