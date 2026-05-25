@@ -8,7 +8,7 @@ to update. The realistic risks are:
   someone's actual production system.
 - **Broken or hijacked outbound links** in the playbook.
 
-If you find any of those, please email **frederick.olaf@gmail.com** instead
+If you find any of those, please email **backcountry@tronboll.us** instead
 of opening a public issue. Use "ai-dev-governance security" in the subject
 line. I'll respond within a few days and patch the docs.
 
