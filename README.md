@@ -47,7 +47,7 @@ then read docs/architecture.md.
 Then, given my setup:
 - Repos / projects: <e.g. 3 Next.js apps + a shared package>
 - My Strategist tool: <e.g. ChatGPT in the web app>
-- My Executor tool: <e.g. Codex in my terminal>
+- My Executor tool: <e.g. Codex, Claude Code, Cursor, or Grok Build in my terminal>
 - Where my files live: <e.g. ~/dev, GitHub org "acme">
 
 Assess how to adapt this governance model to MY environment. Tell me:
@@ -71,8 +71,8 @@ This model is **actor-agnostic.** It describes two *roles*, not two products. Sl
 
 | Role | What it needs to be good at | Example tools |
 | :---- | :---- | :---- |
-| **Strategist** | Research, architecture, writing specs. Works *outside* the repo. Needs no commit access — and shouldn't have it. | Perplexity, ChatGPT, Claude (web/app), Gemini |
-| **Executor** | Lives *inside* the repo. Runs the build, tests, and DB queries. Commits and pushes. | Codex, Claude Code, Cursor, GitHub Copilot, Gemini CLI, Aider |
+| **Strategist** | Research, architecture, writing specs. Works *outside* the repo. Needs no commit access — and shouldn't have it. | Perplexity, ChatGPT, Claude (web/app), Gemini, Grok |
+| **Executor** | Lives *inside* the repo. Runs the build, tests, and DB queries. Commits and pushes. | Codex, Claude Code, Cursor, GitHub Copilot, Gemini CLI, Grok Build, Aider |
 
 **Example pairings** — all equally valid:
 
@@ -82,6 +82,7 @@ This model is **actor-agnostic.** It describes two *roles*, not two products. Sl
 | ChatGPT | Codex |
 | Claude (app) | Cursor |
 | Gemini (web) | Gemini CLI |
+| Grok | Grok Build |
 
 …or any combination. Pick whatever you already pay for; the discipline is in the *handoff between the roles*, not the logos. The shop this playbook came from runs Perplexity and Claude as paired strategists with Claude Code as executor — the model genuinely doesn't care.
 

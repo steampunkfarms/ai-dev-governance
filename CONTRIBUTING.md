@@ -21,9 +21,13 @@ Copy [`docs/_deep-dive-template.md`](docs/_deep-dive-template.md) and keep the s
 
 ## Style
 
-- **Stay actor-agnostic.** Write in terms of the *Strategist* and *Executor* roles. Real tools (Perplexity, ChatGPT, Claude, Codex, Cursor, Claude Code, Gemini CLI, …) appear only as examples, never as requirements. Don't favor any single vendor — the model works because it doesn't care.
+- **Stay actor-agnostic.** Write in terms of the *Strategist* and *Executor* roles. Real tools (Perplexity, ChatGPT, Claude, Gemini, Grok, Codex, Cursor, Claude Code, Gemini CLI, Grok Build, Aider, …) appear only as examples, never as requirements. Don't favor any single vendor — the model works because it doesn't care.
 - **De-identify examples.** No real company names, repo names, client data, or internal jargon. A generalized story teaches just as well.
 - **Lessons first.** Lead with the mistake and the cost, then the fix.
 - **Keep it tight.** If a paragraph doesn't change what someone *does*, cut it.
+
+## A note on contributor attribution
+
+GitHub's Contributors graph maps commits to GitHub accounts by *email*, not by author name. A few commits in this repo's history show a generic-looking GitHub username (`AgentMedia1942`) in the Contributors view but a clearer author string (`Perplexity Computer (CChat)`) in the commit log itself. Both refer to the same actor: Perplexity Computer working as a Strategist on this playbook under a task-scoped suspension of the standing "Strategist never commits directly" rule. Open any such commit and the author line confirms it. The two-name appearance is an artifact of how GitHub displays aggregated stats, not a separate contributor. Practicing what the playbook preaches: this is the kind of thing worth writing down once so the next reader doesn't have to chase it.
 
 Thanks for helping other developers skip the walls you already climbed.
