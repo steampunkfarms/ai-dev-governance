@@ -63,6 +63,47 @@ Both are files on disk. Neither relies on an agent "remembering."
 1. <secret / migration / anything the agent must not run>
 ```
 
+## Where state goes when the governance file grows
+
+A single-file governance store (one `state.md` for the whole enterprise) works for the first few months. By the time you're carrying a dozen active projects, three families of standards, six months of decisions, and a backlog of deferred items, that file becomes unreadable — and every session pays a re-read tax for context it doesn't need.
+
+The answer is a **state cascade**: one quick-read index file, with the bulk of the state sharded into named files that the session loads on demand.
+
+```
+governance/
+├── state.md                       ← quick-read index + cascade map
+└── state/
+    ├── decisions-log.md           ← durable decisions, append-only
+    ├── deferred-items.md          ← anything that's been pushed forward
+    ├── architecture-notes.md      ← cross-cutting design notes
+    ├── active-work.md             ← what's in flight right now
+    ├── projects/
+    │   ├── <project-slug>.md      ← per-project state, one file each
+    │   └── …
+    └── completed-YYYY-MM.md       ← monthly archive of finished work
+```
+
+**The routing rule for session-end updates:**
+
+| Update | Goes in |
+| :---- | :---- |
+| One-line current-status summary, pointer to where the detail lives | `state.md` |
+| A durable decision (a rule, a precedent, a "we're not doing X") | `state/decisions-log.md` |
+| Something pushed forward without a fixed date | `state/deferred-items.md` |
+| Per-project status, blockers, next-step | `state/projects/<slug>.md` |
+| Work shipped this month | `state/completed-YYYY-MM.md` |
+| A cross-cutting design observation that doesn't belong to one project | `state/architecture-notes.md` |
+
+**The routing rule for session-start reads:**
+
+1. Always read `state.md` — the index and cascade map.
+2. Read the downstream files in `state/` only when the request touches their subject. A request about project X loads `state/projects/x.md`; a request that touches a precedent loads `state/decisions-log.md`. The cascade map in `state.md` tells you which downstream files to load when.
+3. Read alerts and global context files (the [`AGENT.md` cascade](context-cascade.md)) regardless.
+
+The payoff: `state.md` stays under a page; per-session context loads stay under a few KB; nothing is lost because the bulk lives in the named files, addressable by topic. The pattern scales from one repo to thirty without changing shape — only the per-project file count grows.
+
+**When to adopt the cascade:** when `state.md` reaches a length that makes you scroll to find anything, or when sessions repeatedly load context they don't need. Until then, a single file is enough.
+
 ## Worked example
 
 A migration task times out after step 3 of 6. Without a checkpoint, the next session re-runs steps 1–3 and double-applies the migration. With this checkpoint, it doesn't:

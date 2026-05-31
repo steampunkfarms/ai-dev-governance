@@ -30,7 +30,7 @@ If you've felt any of that, you've hit the wall this repo is about. It's not a t
 
 **Who this is for:** solo developers and small teams using AI coding agents — usually a chat assistant *plus* a terminal agent — across more than one repo. New devs get a structure to model from before the walls show up; experienced devs hitting those walls get a map out.
 
-**This README is the manifesto.** The working reference — foundations, layered protocols, lifecycle — lives in [`docs/architecture.md`](docs/architecture.md). Each facet has its own deep-dive in [`docs/`](docs/).
+**This README is the manifesto.** The working reference — foundations, layered protocols, lifecycle — lives in [`docs/architecture.md`](docs/architecture.md). If you'd rather skip the theory and adopt the minimum viable version today, jump to [Getting Started](docs/getting-started.md) — a 30-minute on-ramp. Each facet has its own deep-dive in [`docs/`](docs/).
 
 ---
 
@@ -179,16 +179,22 @@ Each facet of the model, presented in isolation with worked examples. Start with
 
 | Deep dive | What it covers |
 | :---- | :---- |
+| [Getting Started](docs/getting-started.md) | The smallest useful adoption: two roles, one `AGENT.md`, one checkpoint — in 30 minutes |
 | [The Two Roles](docs/two-roles.md) | Choosing your Strategist and Executor; drawing the line between them; the implicit Operator role |
 | [The Context Cascade](docs/context-cascade.md) | Building an `AGENT.md` hierarchy that resolves conflicts cleanly |
 | [File Handling](docs/file-handling.md) | Which tool, which filesystem, verify by reading back, recover from crashes |
-| [Checkpoints & Handoffs](docs/checkpoints-handoffs.md) | Templates and the session-resume protocol |
+| [Checkpoints & Handoffs](docs/checkpoints-handoffs.md) | Templates, the session-resume protocol, and the state cascade when your governance file outgrows one page |
 | [The Sanity Check](docs/sanity-check.md) | Validating a blind spec against live production before it runs |
 | [Bounded Deviation](docs/bounded-deviation.md) | The exact rule for when an Executor may stray from the spec |
 | [The Delta Log](docs/delta-log.md) | Counting deltas across families until a pattern becomes a standard |
 | [Governance Sync](docs/governance-sync.md) | Keeping Strategist and Executor in sync through files; handling sync conflicts |
 | [The Roadmap System](docs/roadmap-system.md) | Two genres, the index, and why surfaces are allowed to drift |
 | [The QA Gate](docs/qa-gate.md) | The fixed checklist that defines "done" |
+| [Architecture Graphs](docs/architecture-graphs.md) | Generated maps of repo structure that turn the Strategist from blind to fluent |
+| [Autonomous Loops](docs/autonomous-loops.md) | Kill switches, heartbeats, and the discipline for code that runs when no one is watching |
+| [Secrets and Rotation](docs/secrets-and-rotation.md) | Credential hygiene with two AIs in the room; rotation and leak protocols |
+| [Dependency Management](docs/dependency-management.md) | Lockfile-as-truth; cadences for patch / minor / major; monthly audit |
+| [Cost Management](docs/cost-management.md) | Budgets, monthly review, circuit breakers, and treating overruns as incidents |
 
 > Adding a deep dive? Copy [`docs/_deep-dive-template.md`](docs/_deep-dive-template.md) so every facet reads the same way.
 
@@ -205,6 +211,16 @@ You don't need three families, a dashboard, or an orchestrator to use most of th
 - **Let your tracking surfaces drift, and keep one index that catches the drift.**
 
 Start with the two-role split and checkpoints. Add the cascade, the Sanity Check, and the roadmap index as your repo count grows and the failure modes above start to bite.
+
+---
+
+## 🔗 New here?
+
+If the manifesto resonates and you want the shortest path from "interesting" to "in production":
+
+1. **[Getting Started](docs/getting-started.md)** — adopt two roles, one `AGENT.md`, and one checkpoint on your next task. 30 minutes.
+2. **Hit a wall.** Use the trigger table in that doc to pick the next deep-dive when a specific failure mode arrives.
+3. **Graduate to the [architecture reference](docs/architecture.md)** when the model has earned your trust on real failures.
 
 ---
 
