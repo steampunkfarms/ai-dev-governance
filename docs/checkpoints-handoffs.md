@@ -99,8 +99,9 @@ The next session reads it, skips to step 4, and finishes cleanly. Nothing is los
 
 ## Related
 
+- [File Handling](file-handling.md) — the mechanics that make incremental checkpointing actually work
 - [The Two Roles](two-roles.md) — what the handoff connects
 - [The Sanity Check](sanity-check.md) — the Executor's first move on receiving a handoff
 - [Governance Sync](governance-sync.md) — how the handoff file gets safely shared between roles
-- [The file-handling protocol](architecture.md#foundation-4--the-file-handling-protocol)
+- [The file-handling protocol — in context](architecture.md#foundation-4--the-file-handling-protocol)
 - Back to the [main playbook](../README.md)

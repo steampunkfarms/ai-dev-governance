@@ -93,6 +93,7 @@ Contrast the anti-pattern: mid-chat, the Strategist says *"this is easy, I'll ju
 ## Related
 
 - [Checkpoints & Handoffs](checkpoints-handoffs.md) — the artifact that crosses the line
+- [File Handling](file-handling.md) — the "tempted to just fix it quick" pattern and the escape valve
 - [The Sanity Check](sanity-check.md) — why the Executor, not the Strategist, validates against production
 - [Bounded Deviation](bounded-deviation.md) — what the Executor may do without asking
 - [Governance Sync](governance-sync.md) — how Strategist and Executor stay aligned across sessions

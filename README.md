@@ -180,6 +180,7 @@ Each facet of the model, presented in isolation with worked examples. Start with
 | :---- | :---- |
 | [The Two Roles](docs/two-roles.md) | Choosing your Strategist and Executor; drawing the line between them; the implicit Operator role |
 | [The Context Cascade](docs/context-cascade.md) | Building an `AGENT.md` hierarchy that resolves conflicts cleanly |
+| [File Handling](docs/file-handling.md) | Which tool, which filesystem, verify by reading back, recover from crashes |
 | [Checkpoints & Handoffs](docs/checkpoints-handoffs.md) | Templates and the session-resume protocol |
 | [The Sanity Check](docs/sanity-check.md) | Validating a blind spec against live production before it runs |
 | [Bounded Deviation](docs/bounded-deviation.md) | The exact rule for when an Executor may stray from the spec |

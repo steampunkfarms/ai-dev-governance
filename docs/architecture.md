@@ -154,18 +154,24 @@ The core operating protocol — it exists because sessions time out, the agent's
 
 **Rule 4 — Decompose large tasks.** Atomic steps, each producing files on disk, each independently valuable. Prefer many small files over one giant file.
 
-**Rule 5 — Anti-patterns.**
+**Rule 5 — Audit your tool surface.** Before relying on a write tool, prove out *where it writes* with a throwaway probe file. The path argument doesn't constrain the destination — the tool does. A generic-sounding name (`create_file`, `save`, an "artifact" tool) can land your file in the agent's container even when the path looks correct. See the [File Handling deep dive](file-handling.md#rule-3--audit-your-tool-surface-before-you-trust-it) for the test and a list of common surprises.
+
+**Rule 6 — Recover from crashes against the disk, not the plan.** When a session times out, the next session reads the checkpoint and *verifies every "done" step against the filesystem* before resuming. The plan is intent; the files are fact. They diverge whenever a timeout lands between an intent and a write. See [File Handling — Rule 5](file-handling.md#rule-5--error-recovery).
+
+**Rule 7 — Anti-patterns.**
 
 | Anti-pattern | Why it's bad | Do instead |
 | :---- | :---- | :---- |
 | Write to the agent's container | Files vanish on timeout | Write to the persistent filesystem |
 | Save all files at the end | Timeout = total loss | Write each file as completed |
 | Skip verification | A "success" response can lie | Always read the file back |
+| Trust an un-audited write tool | Tool name doesn't tell you where it writes | Run a probe-file test once per new tool |
+| Resume a crashed session from the plan | The plan is intent; the files are fact | Verify each "done" step against the disk first |
 | Skip checkpoints on "small" tasks | Small tasks grow | Always checkpoint |
 | Strategist writes code directly | No type-check, no conventions | Write a handoff spec for the Executor |
 | Strategist edits env files | Wrong var names, missed trims | List the vars in a handoff spec |
 
-→ Deep dive: [Checkpoints & Handoffs](checkpoints-handoffs.md).
+→ Deep dives: [File Handling](file-handling.md) (the mechanics: which tool, which filesystem, verify, recover) · [Checkpoints & Handoffs](checkpoints-handoffs.md) (the artifacts that carry state across time and roles).
 
 ---
 
@@ -269,5 +275,5 @@ The transferable core is small: two roles, files as the only memory, reality-che
 
 ## Related
 
-- [The Two Roles](two-roles.md) · [The Context Cascade](context-cascade.md) · [Checkpoints & Handoffs](checkpoints-handoffs.md) · [The Sanity Check](sanity-check.md) · [Bounded Deviation](bounded-deviation.md) · [Governance Sync](governance-sync.md) · [The Roadmap System](roadmap-system.md) · [The QA Gate](qa-gate.md) · [The Delta Log](delta-log.md)
+- [The Two Roles](two-roles.md) · [The Context Cascade](context-cascade.md) · [File Handling](file-handling.md) · [Checkpoints & Handoffs](checkpoints-handoffs.md) · [The Sanity Check](sanity-check.md) · [Bounded Deviation](bounded-deviation.md) · [Governance Sync](governance-sync.md) · [The Roadmap System](roadmap-system.md) · [The QA Gate](qa-gate.md) · [The Delta Log](delta-log.md)
 - Back to the [main playbook](../README.md)
